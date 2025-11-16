@@ -11,6 +11,7 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+
         // Load the FXML file for the form screen
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("form.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 400, 500);  // Adjust size as needed
