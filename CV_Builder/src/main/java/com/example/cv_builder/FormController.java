@@ -1,10 +1,12 @@
 package com.example.cv_builder;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 
@@ -12,45 +14,54 @@ import java.io.IOException;
 
 public class FormController {
 
-    @FXML
-    private TextField fullNameField;
+    @FXML private TextField fullNameField;
+    @FXML private TextField emailField;
+    @FXML private TextField phoneField;
+    @FXML private TextArea addressField;
+    @FXML private TextArea educationField;
+    @FXML private TextArea skillsField;
+    @FXML private TextArea workExperienceField;
+    @FXML private TextArea projectsField;
 
-    @FXML
-    private TextField emailField;
-
-    @FXML
-    private TextField phoneField;
-
-    @FXML
-    private TextArea educationField;
-
-    @FXML
-    private TextArea skillsField;
-
+    // Handle Generate button
     @FXML
     private void handleGenerateCV() {
-        String fullName = fullNameField.getText();
-        String email = emailField.getText();
-        String phone = phoneField.getText();
-        String education = educationField.getText();
-        String skills = skillsField.getText();
+        if (fullNameField.getText().isEmpty() || emailField.getText().isEmpty() || phoneField.getText().isEmpty()) {
+            showAlert("Please fill in all the required fields.");
+        } else {
+            String fullName = fullNameField.getText();
+            String email = emailField.getText();
+            String phone = phoneField.getText();
+            String address = addressField.getText();
+            String education = educationField.getText();
+            String skills = skillsField.getText();
+            String workExperience = workExperienceField.getText();
+            String projects = projectsField.getText();
 
-        try {
-            // Load the CV preview screen
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("cv_preview.fxml"));
-            Parent root = loader.load();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("cv_preview.fxml"));
+                Parent root = loader.load();
 
-            // Get the controller and set the CV details
-            CVPreviewController previewController = loader.getController();
-            previewController.setCV(fullName, email, phone, education, skills);
+                CVPreviewController previewController = loader.getController();
+                previewController.setCV(fullName, email, phone, address, education, skills, workExperience, projects);
 
-            // Show the preview screen
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("CV Preview");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("CV Preview");
+                stage.setFullScreen(true); // full screen
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+    }
+
+    // Show warning
+    private void showAlert(String message) {
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Missing Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

@@ -6,6 +6,9 @@
     <Label fx:id="nameLabel" layoutX="50" layoutY="50" style="-fx-font-size: 20px;"/>
     <Label fx:id="emailLabel" layoutX="50" layoutY="100"/>
     <Label fx:id="phoneLabel" layoutX="50" layoutY="150"/>
-    <Label fx:id="educationLabel" layoutX="50" layoutY="200"/>
-    <Label fx:id="skillsLabel" layoutX="50" layoutY="250"/>
+    <Label fx:id="addressLabel" layoutX="50" layoutY="200"/>
+    <Label fx:id="educationLabel" layoutX="50" layoutY="250"/>
+    <Label fx:id="skillsLabel" layoutX="50" layoutY="300"/>
+    <Label fx:id="workExperienceLabel" layoutX="50" layoutY="350"/>
+    <Label fx:id="projectsLabel" layoutX="50" layoutY="400"/>
 </AnchorPane>
