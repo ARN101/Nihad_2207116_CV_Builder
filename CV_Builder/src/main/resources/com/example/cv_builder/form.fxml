@@ -1,51 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.geometry.Insets?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cv_builder.FormController" spacing="20" style="-fx-padding: 30; -fx-background-color: #f5f5f5;">
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cv_builder.FormController"
+            fitToWidth="true" style="-fx-background-color: #f5f5f5;">
+    <VBox spacing="20" style="-fx-padding: 30; -fx-background-color: #f5f5f5;">
 
-    <VBox alignment="CENTER" spacing="10">
-        <Label text="Profile Photo" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
-        <ImageView fx:id="photoPreview" fitWidth="150" fitHeight="150" preserveRatio="true" visible="false" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 2);"/>
-        <Button fx:id="uploadPhotoButton" text="Upload Photo" onAction="#handleUploadPhoto" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-padding: 10 20; -fx-font-size: 14px;"/>
+        <Label text="Create Your CV" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+        <VBox alignment="CENTER" spacing="10" style="-fx-padding: 20; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+            <Label text="Profile Photo (Optional)" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+            <ImageView fx:id="photoPreview" fitWidth="150" fitHeight="150" preserveRatio="true" visible="false"
+                       style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 2);"/>
+            <Button fx:id="uploadPhotoButton" text="Upload Photo" onAction="#handleUploadPhoto"
+                    style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-padding: 10 20; -fx-font-size: 14px;"/>
+        </VBox>
+
+        <VBox spacing="15" style="-fx-padding: 30; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+
+            <VBox spacing="5">
+                <Label text="Full Name: *" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <TextField fx:id="fullNameField" promptText="Enter your full name"/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Email: *" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <TextField fx:id="emailField" promptText="example@email.com"/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Phone: *" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <TextField fx:id="phoneField" promptText="+880123456789"/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Address:" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <TextArea fx:id="addressField" prefHeight="80" promptText="Your complete address" wrapText="true"/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Education:" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <TextArea fx:id="educationField" prefHeight="120" wrapText="true">
+                    <promptText>List your educational qualifications
+
+                        Example:
+                        B.Sc. in Computer Science - XYZ University (2020-2024)</promptText>
+                </TextArea>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Skills:" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <TextArea fx:id="skillsField" prefHeight="120" wrapText="true">
+                    <promptText>List your skills
+
+                        Example:
+                        • Java, Python, C++
+                        • JavaFX, Spring Boot</promptText>
+                </TextArea>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Work Experience:" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <TextArea fx:id="workExperienceField" prefHeight="140" wrapText="true">
+                    <promptText>Describe your work experience
+
+                        Example:
+                        Software Developer Intern - Tech Company (June 2025 - Aug 2025)
+                        • Developed web applications using Java</promptText>
+                </TextArea>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Projects:" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <TextArea fx:id="projectsField" prefHeight="140" wrapText="true">
+                    <promptText>List your projects
+
+                        Example:
+                        E-Commerce Website
+                        • Built using Spring Boot and React
+                        • Implemented payment gateway integration</promptText>
+                </TextArea>
+            </VBox>
+        </VBox>
+
+        <HBox spacing="15" alignment="CENTER" style="-fx-padding: 10;">
+            <Button text="Generate CV" onAction="#handleGenerateCV"
+                    style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-padding: 15 40; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+        </HBox>
+
+        <Label text="* Required fields" style="-fx-font-size: 12px; -fx-text-fill: #e74c3c; -fx-font-style: italic;"/>
+
     </VBox>
-
-    <GridPane vgap="15" hgap="15" style="-fx-padding: 20; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
-        <padding>
-            <Insets top="20" right="20" bottom="20" left="20"/>
-        </padding>
-
-        <Label text="Full Name:" style="-fx-font-weight: bold;"/>
-        <TextField fx:id="fullNameField" GridPane.columnIndex="1" prefWidth="300" promptText="Enter your full name"/>
-
-        <Label text="Email:" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
-        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="300" promptText="example@email.com"/>
-
-        <Label text="Phone:" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
-        <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="300" promptText="+880123456789"/>
-
-        <Label text="Address:" GridPane.rowIndex="3" style="-fx-font-weight: bold;"/>
-        <TextArea fx:id="addressField" GridPane.columnIndex="1" GridPane.rowIndex="3" prefHeight="60" prefWidth="300" promptText="Your address"/>
-
-        <Label text="Education:" GridPane.rowIndex="4" style="-fx-font-weight: bold;"/>
-        <TextArea fx:id="educationField" GridPane.columnIndex="1" GridPane.rowIndex="4" prefHeight="80" prefWidth="300" promptText="Your educational qualifications"/>
-
-        <Label text="Skills:" GridPane.rowIndex="5" style="-fx-font-weight: bold;"/>
-        <TextArea fx:id="skillsField" GridPane.columnIndex="1" GridPane.rowIndex="5" prefHeight="80" prefWidth="300" promptText="Your skills"/>
-
-        <Label text="Work Experience:" GridPane.rowIndex="6" style="-fx-font-weight: bold;"/>
-        <TextArea fx:id="workExperienceField" GridPane.columnIndex="1" GridPane.rowIndex="6" prefHeight="100" prefWidth="300" promptText="Your work experience"/>
-
-        <Label text="Projects:" GridPane.rowIndex="7" style="-fx-font-weight: bold;"/>
-        <TextArea fx:id="projectsField" GridPane.columnIndex="1" GridPane.rowIndex="7" prefHeight="100" prefWidth="300" promptText="Your projects"/>
-
-        <Button text="Generate CV" GridPane.columnSpan="2" GridPane.rowIndex="8" GridPane.halignment="CENTER" onAction="#handleGenerateCV"
-                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-padding: 15 40; -fx-font-size: 16px; -fx-font-weight: bold;"/>
-    </GridPane>
-</VBox>
+</ScrollPane>

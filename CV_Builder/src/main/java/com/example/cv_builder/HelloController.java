@@ -9,23 +9,17 @@ import java.io.IOException;
 
 public class HelloController {
 
-
     public void handleCreateCV() {
         try {
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("form.fxml"));
             Parent root = loader.load();
 
-
             Stage stage = new Stage();
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root, 900, 700);
+            stage.setScene(scene);
             stage.setTitle("Create New CV");
 
-
-            stage.setFullScreen(true);
-
-
-            stage.centerOnScreen();
+            stage.setMaximized(true);
 
             stage.show();
         } catch (IOException e) {

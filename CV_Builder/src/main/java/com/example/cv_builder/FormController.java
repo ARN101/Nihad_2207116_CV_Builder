@@ -55,24 +55,42 @@ public class FormController {
 
     @FXML
     private void handleGenerateCV() {
-        if (fullNameField.getText().isEmpty() || emailField.getText().isEmpty() || phoneField.getText().isEmpty()) {
-            showAlert("Please fill in all the required fields.");
+        StringBuilder errors = new StringBuilder();
+
+        if (fullNameField.getText().trim().isEmpty()) {
+            errors.append("• Full Name is required\n");
+        }
+
+        if (emailField.getText().trim().isEmpty()) {
+            errors.append("• Email is required\n");
+        } else if (!isValidEmail(emailField.getText().trim())) {
+            errors.append("• Email format is invalid\n");
+        }
+
+        if (phoneField.getText().trim().isEmpty()) {
+            errors.append("• Phone Number is required\n");
+        }
+
+        if (errors.length() > 0) {
+            showAlert("Please fix the following errors:\n\n" + errors.toString());
         } else {
-            String fullName = fullNameField.getText();
-            String email = emailField.getText();
-            String phone = phoneField.getText();
-            String address = addressField.getText();
-            String education = educationField.getText();
-            String skills = skillsField.getText();
-            String workExperience = workExperienceField.getText();
-            String projects = projectsField.getText();
+            CVModel cvData = new CVModel(
+                    fullNameField.getText().trim(),
+                    emailField.getText().trim(),
+                    phoneField.getText().trim(),
+                    addressField.getText().trim(),
+                    educationField.getText().trim(),
+                    skillsField.getText().trim(),
+                    workExperienceField.getText().trim(),
+                    projectsField.getText().trim()
+            );
 
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("cv_preview.fxml"));
                 Parent root = loader.load();
 
                 CVPreviewController previewController = loader.getController();
-                previewController.setCV(fullName, email, phone, address, education, skills, workExperience, projects, selectedPhoto);
+                previewController.setCVData(cvData, selectedPhoto);
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
@@ -81,8 +99,13 @@ public class FormController {
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
+                showAlert("Error loading CV preview: " + e.getMessage());
             }
         }
+    }
+
+    private boolean isValidEmail(String email) {
+        return email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     }
 
     private void showAlert(String message) {
