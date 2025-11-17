@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cv_builder.CVPreviewController">
-    <Label fx:id="nameLabel" layoutX="50" layoutY="50" style="-fx-font-size: 20px;"/>
-    <Label fx:id="emailLabel" layoutX="50" layoutY="100"/>
-    <Label fx:id="phoneLabel" layoutX="50" layoutY="150"/>
-    <Label fx:id="addressLabel" layoutX="50" layoutY="200"/>
-    <Label fx:id="educationLabel" layoutX="50" layoutY="250"/>
-    <Label fx:id="skillsLabel" layoutX="50" layoutY="300"/>
-    <Label fx:id="workExperienceLabel" layoutX="50" layoutY="350"/>
-    <Label fx:id="projectsLabel" layoutX="50" layoutY="400"/>
-</AnchorPane>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cv_builder.CVPreviewController"
+            style="-fx-background-color: white;">
+
+    <top>
+        <HBox spacing="30" alignment="CENTER_LEFT" style="-fx-background-color: #2c3e50; -fx-padding: 40;">
+            <ImageView fx:id="profilePhoto" fitWidth="150" fitHeight="150" preserveRatio="true"
+                       style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 15, 0, 0, 3);"/>
+
+            <VBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="nameLabel" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                <Label fx:id="emailLabel" style="-fx-font-size: 16px; -fx-text-fill: #ecf0f1;"/>
+                <Label fx:id="phoneLabel" style="-fx-font-size: 16px; -fx-text-fill: #ecf0f1;"/>
+                <Label fx:id="addressLabel" style="-fx-font-size: 14px; -fx-text-fill: #bdc3c7;"/>
+            </VBox>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="30" style="-fx-padding: 50;">
+
+            <VBox spacing="10">
+                <Label text="EDUCATION" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <Separator style="-fx-background-color: #3498db; -fx-pref-height: 3;"/>
+                <Label fx:id="educationLabel" wrapText="true" style="-fx-font-size: 14px; -fx-text-fill: #34495e; -fx-padding: 10 0 0 0;"/>
+            </VBox>
+
+            <VBox spacing="10">
+                <Label text="SKILLS" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <Separator style="-fx-background-color: #3498db; -fx-pref-height: 3;"/>
+                <Label fx:id="skillsLabel" wrapText="true" style="-fx-font-size: 14px; -fx-text-fill: #34495e; -fx-padding: 10 0 0 0;"/>
+            </VBox>
+
+            <VBox spacing="10">
+                <Label text="WORK EXPERIENCE" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <Separator style="-fx-background-color: #3498db; -fx-pref-height: 3;"/>
+                <Label fx:id="workExperienceLabel" wrapText="true" style="-fx-font-size: 14px; -fx-text-fill: #34495e; -fx-padding: 10 0 0 0;"/>
+            </VBox>
+
+            <VBox spacing="10">
+                <Label text="PROJECTS" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <Separator style="-fx-background-color: #3498db; -fx-pref-height: 3;"/>
+                <Label fx:id="projectsLabel" wrapText="true" style="-fx-font-size: 14px; -fx-text-fill: #34495e; -fx-padding: 10 0 0 0;"/>
+            </VBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

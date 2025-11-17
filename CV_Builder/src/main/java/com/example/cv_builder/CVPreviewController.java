@@ -2,6 +2,8 @@ package com.example.cv_builder;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class CVPreviewController {
 
@@ -13,16 +15,23 @@ public class CVPreviewController {
     @FXML private Label skillsLabel;
     @FXML private Label workExperienceLabel;
     @FXML private Label projectsLabel;
+    @FXML private ImageView profilePhoto;
 
-    // Set the CV data on the preview screen
-    public void setCV(String name, String email, String phone, String address, String education, String skills, String workExperience, String projects) {
-        nameLabel.setText("Name: " + name);
-        emailLabel.setText("Email: " + email);
-        phoneLabel.setText("Phone: " + phone);
-        addressLabel.setText("Address: " + address);
-        educationLabel.setText("Education: " + education);
-        skillsLabel.setText("Skills: " + skills);
-        workExperienceLabel.setText("Work Experience: " + workExperience);
-        projectsLabel.setText("Projects: " + projects);
+    public void setCV(String name, String email, String phone, String address, String education, String skills, String workExperience, String projects, Image photo) {
+        nameLabel.setText(name);
+        emailLabel.setText(email);
+        phoneLabel.setText(phone);
+        addressLabel.setText(address);
+        educationLabel.setText(education);
+        skillsLabel.setText(skills);
+        workExperienceLabel.setText(workExperience);
+        projectsLabel.setText(projects);
+
+        if (photo != null) {
+            profilePhoto.setImage(photo);
+            profilePhoto.setVisible(true);
+        } else {
+            profilePhoto.setVisible(false);
+        }
     }
 }

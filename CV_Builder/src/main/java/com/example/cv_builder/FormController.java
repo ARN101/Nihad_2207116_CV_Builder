@@ -5,11 +5,16 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.io.IOException;
 
 public class FormController {
@@ -22,8 +27,32 @@ public class FormController {
     @FXML private TextArea skillsField;
     @FXML private TextArea workExperienceField;
     @FXML private TextArea projectsField;
+    @FXML private Button uploadPhotoButton;
+    @FXML private ImageView photoPreview;
 
-    // Handle Generate button
+    private Image selectedPhoto;
+
+    @FXML
+    private void handleUploadPhoto() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Profile Photo");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
+
+        File selectedFile = fileChooser.showOpenDialog(uploadPhotoButton.getScene().getWindow());
+
+        if (selectedFile != null) {
+            try {
+                selectedPhoto = new Image(selectedFile.toURI().toString());
+                photoPreview.setImage(selectedPhoto);
+                photoPreview.setVisible(true);
+            } catch (Exception e) {
+                showAlert("Error loading image: " + e.getMessage());
+            }
+        }
+    }
+
     @FXML
     private void handleGenerateCV() {
         if (fullNameField.getText().isEmpty() || emailField.getText().isEmpty() || phoneField.getText().isEmpty()) {
@@ -43,12 +72,12 @@ public class FormController {
                 Parent root = loader.load();
 
                 CVPreviewController previewController = loader.getController();
-                previewController.setCV(fullName, email, phone, address, education, skills, workExperience, projects);
+                previewController.setCV(fullName, email, phone, address, education, skills, workExperience, projects, selectedPhoto);
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.setTitle("CV Preview");
-                stage.setFullScreen(true); // full screen
+                stage.setFullScreen(true);
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -56,7 +85,6 @@ public class FormController {
         }
     }
 
-    // Show warning
     private void showAlert(String message) {
         Alert alert = new Alert(AlertType.WARNING);
         alert.setTitle("Missing Information");

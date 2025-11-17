@@ -11,14 +11,14 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        // Correct the path to home-view.fxml
+
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("CV Builder");
 
         // Make the stage full screen
         stage.setScene(scene);
-        stage.setFullScreen(true);  // Full screen mode
+        stage.setFullScreen(true);
         stage.show();
     }
 
