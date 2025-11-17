@@ -11,10 +11,9 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-
-        // Load the FXML file for the form screen
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("form.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 400, 500);  // Adjust size as needed
+        // Load the hello-view.fxml file for the home screen
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);  // Adjust the size as needed
         stage.setTitle("CV Builder");
         stage.setScene(scene);
         stage.show();
