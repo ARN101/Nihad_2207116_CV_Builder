@@ -7,15 +7,24 @@ import javafx.scene.image.ImageView;
 
 public class CVPreviewController {
 
-    @FXML private Label nameLabel;
-    @FXML private Label emailLabel;
-    @FXML private Label phoneLabel;
-    @FXML private Label addressLabel;
-    @FXML private Label educationLabel;
-    @FXML private Label skillsLabel;
-    @FXML private Label workExperienceLabel;
-    @FXML private Label projectsLabel;
-    @FXML private ImageView profilePhoto;
+    @FXML
+    private Label nameLabel;
+    @FXML
+    private Label emailLabel;
+    @FXML
+    private Label phoneLabel;
+    @FXML
+    private Label addressLabel;
+    @FXML
+    private Label educationLabel;
+    @FXML
+    private Label skillsLabel;
+    @FXML
+    private Label workExperienceLabel;
+    @FXML
+    private Label projectsLabel;
+    @FXML
+    private ImageView profilePhoto;
 
     public void setCVData(CVModel cvData, Image photo) {
         nameLabel.setText(cvData.getFullName());
@@ -40,7 +49,8 @@ public class CVPreviewController {
         }
     }
 
-    public void setCV(String name, String email, String phone, String address, String education, String skills, String workExperience, String projects, Image photo) {
+    public void setCV(String name, String email, String phone, String address, String education, String skills,
+            String workExperience, String projects, Image photo) {
         CVModel cvData = new CVModel(name, email, phone, address, education, skills, workExperience, projects);
         setCVData(cvData, photo);
     }
@@ -48,5 +58,25 @@ public class CVPreviewController {
     @FXML
     private void handleClose() {
         profilePhoto.getScene().getWindow().hide();
+    }
+
+    @FXML
+    private void handleBackToHome() {
+        // Find the main application window and set it to full screen before closing
+        // preview
+        javafx.stage.Window currentWindow = profilePhoto.getScene().getWindow();
+
+        // Get all open windows and find the main window (not the preview)
+        for (javafx.stage.Window window : javafx.stage.Window.getWindows()) {
+            if (window != currentWindow && window instanceof javafx.stage.Stage) {
+                javafx.stage.Stage mainStage = (javafx.stage.Stage) window;
+                mainStage.setFullScreen(true);
+                mainStage.toFront();
+                break;
+            }
+        }
+
+        // Close the preview window
+        currentWindow.hide();
     }
 }

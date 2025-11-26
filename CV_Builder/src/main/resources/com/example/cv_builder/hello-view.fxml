@@ -3,7 +3,23 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.text.Text?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cv_builder.HelloController" alignment="CENTER" spacing="20" style="-fx-background-color: #f0f0f0; -fx-padding: 20;">
-    <Text text="Welcome to CV Builder" style="-fx-font-size: 32px; -fx-font-weight: bold;"/>
-    <Button text="Create New CV" onAction="#handleCreateCV" style="-fx-font-size: 18px; -fx-padding: 15 30; -fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cv_builder.HelloController"
+      alignment="CENTER" spacing="20"
+      style="-fx-background-color: linear-gradient(to bottom, #667eea 0%, #764ba2 100%); -fx-padding: 20;">
+
+    <Text text="Welcome to CV Builder"
+          style="-fx-font-size: 42px; -fx-font-weight: bold; -fx-fill: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 2);"/>
+
+    <Text text="Create and manage your professional CVs"
+          style="-fx-font-size: 18px; -fx-fill: #e0e0e0; -fx-padding: 0 0 20 0;"/>
+
+    <Button text="Create New CV" onAction="#handleCreateCV"
+            style="-fx-font-size: 18px; -fx-padding: 15 50; -fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 3);"
+            onMouseEntered="#handleHover"
+            onMouseExited="#handleExit"
+            prefWidth="300"/>
+
+    <Button text="View Saved CVs" onAction="#handleViewSavedCVs"
+            style="-fx-font-size: 18px; -fx-padding: 15 50; -fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 3);"
+            prefWidth="300"/>
 </VBox>
